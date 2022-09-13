@@ -6,6 +6,7 @@ const InputField = ({
   placeholderText = "",
   errorMessage,
   onChange,
+  onKeyDown,
 }) => (
   <div className="input-field">
     <input
@@ -14,6 +15,7 @@ const InputField = ({
       onChange={onChange}
       value={value}
       placeholder={placeholderText}
+      onKeyDown={onKeyDown}
     />
     {errorMessage && (
       <p className="input-field__error-message">{errorMessage}</p>

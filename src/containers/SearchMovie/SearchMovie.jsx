@@ -62,6 +62,12 @@ const SearchMovie = () => {
     navigate("/movie");
   };
 
+  const onEnterKeyDown = (fn) => (e) => {
+    if (e.key === "Enter") {
+      fn();
+    }
+  };
+
   if (isError) {
     return (
       <ErrorMessage
@@ -85,6 +91,7 @@ const SearchMovie = () => {
           placeholderText="Search for a movie here"
           onChange={handleInputChange}
           errorMessage={errorMessage}
+          onKeyDown={onEnterKeyDown(handleClick)}
         />
         <button
           className="btn search-movie__button"
@@ -103,9 +110,11 @@ const SearchMovie = () => {
         <ul className="search-movie__list">
           {movies.map(({ Title, Year, Poster }) => (
             <li
+              tabIndex={0}
               className="search-movie__list-item"
               key={`${Title}-${Year}`}
               onClick={onMovieTileClick(Title)}
+              onKeyDown={onEnterKeyDown(onMovieTileClick(Title))}
             >
               <MovieTile title={Title} year={Year} imageUrl={Poster} />
             </li>

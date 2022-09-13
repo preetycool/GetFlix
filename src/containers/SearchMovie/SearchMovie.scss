@@ -1,0 +1,49 @@
+@import "../../base";
+
+.search-movie {
+  &__heading {
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  &__introduction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .input-field {
+      @include for-phone-only {
+        width: 100%;
+      }
+      width: 500px;
+      font-size: 1rem;
+      border-radius: 10px;
+    }
+  }
+
+  &__button {
+    margin-top: 2rem;
+  }
+
+  &__error-message {
+    font-size: 1.5rem;
+    color: red;
+    margin-top: 1rem;
+  }
+
+  &__list {
+    @include for-tablet-portrait-up {
+      justify-content: center;
+    }
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+
+    &-item:hover {
+      cursor: pointer;
+    }
+  }
+}

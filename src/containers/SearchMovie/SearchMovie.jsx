@@ -15,9 +15,12 @@ import {
 } from "../../redux/slices/searchMovieSlice";
 import InputField from "../../components/InputField/InputField";
 import Loader from "../../components/Loader/Loader";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import ErrorPage from "../ErrorPage/ErrorPage";
 import { getRandomStringValueFromArray } from "../../shared/utils/utils";
-import { LOADER_TEXT_SAMPLES } from "../../shared/constants";
+import {
+  LOADER_TEXT_SAMPLES,
+  TRY_AGAIN_BUTTON_TEXT,
+} from "../../shared/constants";
 
 const SearchMovie = () => {
   const { searchQuery, listOfMovieTitlesBasedOffSearch, isLoading } =
@@ -39,7 +42,7 @@ const SearchMovie = () => {
     setSearchTerm(e.target.value);
   };
 
-  const getMovieData = async () => {
+  const getMoviesData = async () => {
     const movieData = await getMovieBySearchTerm(searchTerm);
     if (movieData?.data.Error) {
       setErrorMessage(movieData?.data.Error);
@@ -53,7 +56,7 @@ const SearchMovie = () => {
       setErrorMessage("Please enter a movie title");
       return;
     }
-    getMovieData();
+    getMoviesData();
   };
 
   const onMovieTileClick = (title) => () => {
@@ -70,9 +73,10 @@ const SearchMovie = () => {
 
   if (isError) {
     return (
-      <ErrorMessage
+      <ErrorPage
         errorMessage="We have ran into an error"
-        onClick={() => getMovieData()}
+        onClick={() => getMoviesData()}
+        buttonText={TRY_AGAIN_BUTTON_TEXT}
       />
     );
   }

@@ -1,11 +1,17 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import App from "./App";
+import { renderWithProviders } from "./shared/utils/test-utils";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Getflix test suite", () => {
-  it("should display the ho me page", () => {
-    const { getByText } = render(<App />);
-
-    expect(getByText("Hello world!")).toBeTruthy();
+  test("should load the SearchMovie page", () => {
+    renderWithProviders(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>,
+      { preloadedState: {} },
+    );
+    expect(screen.getByText("Welcome to GetFlix")).toBeInTheDocument();
   });
 });

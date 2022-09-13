@@ -5,28 +5,36 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import DetailRow from "../../components/DetailRow/DetailRow";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import ErrorPage from "../ErrorPage/ErrorPage";
 import Loader from "../../components/Loader/Loader";
 import { useGetMovieDetailsQuery } from "../../redux/api/apiSlice";
-import { LOADER_TEXT_SAMPLES } from "../../shared/constants";
+import { movieApi } from "../../redux/api/apiSlice";
+import {
+  LOADER_TEXT_SAMPLES,
+  TRY_AGAIN_BUTTON_TEXT,
+} from "../../shared/constants";
 import { getRandomStringValueFromArray } from "../../shared/utils/utils";
+import { useState } from "react";
 
 const MovieDetails = () => {
   const navigate = useNavigate();
   const movieTitleSelected = useSelector((state) => state.movie.selectedTitle);
+  const [movieDetails, setMovieDetails] = useState({});
+
+  const [getMovieDetails, { isFetching, isError }] =
+    movieApi.endpoints.getMovieDetails.useLazyQuery();
 
   useEffect(() => {
+    const getMovieData = async () => {
+      const { data } = await getMovieDetails(movieTitleSelected);
+      setMovieDetails({ ...data });
+    };
     if (!movieTitleSelected) {
       navigate("/");
+    } else {
+      getMovieData();
     }
   }, [movieTitleSelected]);
-
-  const {
-    data: movieDetails,
-    isFetching,
-    isError,
-    refetch,
-  } = useGetMovieDetailsQuery(movieTitleSelected);
 
   const mapMovieDetails = () => {
     const propertiesToMap = [
@@ -53,9 +61,10 @@ const MovieDetails = () => {
 
   if (isError) {
     return (
-      <ErrorMessage
+      <ErrorPage
         errorMessage="We have ran into an error"
         onClick={() => refetch()}
+        buttonText={TRY_AGAIN_BUTTON_TEXT}
       />
     );
   }

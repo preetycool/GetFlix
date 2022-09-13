@@ -1,7 +1,7 @@
 import React from "react";
 import "./MovieTile.scss";
 
-const MovieTile = ({ title, year, imageUrl = "" }) => (
+const MovieTile = ({ title, year, imageUrl }) => (
   <div className="movie-tile">
     {imageUrl && (
       <img className="movie-tile__image" src={imageUrl} alt={`${title}`} />

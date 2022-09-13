@@ -8,3 +8,6 @@ export const LOADER_TEXT_SAMPLES = [
   "Here's looking at you, kid",
   "Movies.. Lots of Movies...",
 ];
+
+export const TRY_AGAIN_BUTTON_TEXT = "Try again?";
+export const DEFAULT_ERROR_MESSAGE_TEXT = "We have encountered an error";

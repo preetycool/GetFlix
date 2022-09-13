@@ -2,6 +2,9 @@
 
 .search-movie {
   &__heading {
+    @include for-phone-only {
+      font-size: 2rem;
+    }
     color: white;
     font-size: 4rem;
     text-align: center;
@@ -41,8 +44,16 @@
     display: flex;
     flex-wrap: wrap;
 
-    &-item:hover {
-      cursor: pointer;
+    &-item {
+      @include for-phone-only {
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+      }
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

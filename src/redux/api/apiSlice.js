@@ -7,7 +7,7 @@ export const movieApi = createApi({
   endpoints: (builder) => ({
     getMovieBySearchTerm: builder.query({
       query: (searchTerm, pageNumber) =>
-        `?apikey=${MOVIE_API_KEY}&s=${searchTerm}&page=${pageNumber}`,
+        `?apikey=${MOVIE_API_KEY}&s=${searchTerm}`,
     }),
     getMovieDetails: builder.query({
       query: (title) => `?apikey=${MOVIE_API_KEY}&t=${title}`,

@@ -91,6 +91,22 @@ const MovieDetails = () => {
             src={movieDetails.Poster}
             alt={movieDetails.Title}
           />
+          {movieDetails?.Ratings?.length > 0 && (
+            <div className="movie-details__ratings">
+              <h2 className="movie-details__ratings__heading">Ratings</h2>
+              <div className="movie-details__ratings__raters">
+                {movieDetails.Ratings.map(
+                  ({ Source: source, Value: value }) => (
+                    <DetailRow
+                      key={`${source}-${value}`}
+                      title={source}
+                      value={value}
+                    />
+                  ),
+                )}
+              </div>
+            </div>
+          )}
           {Object.keys(movieDetails).length > 0 && mapMovieDetails()}
         </section>
       )}

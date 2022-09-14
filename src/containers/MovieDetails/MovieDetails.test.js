@@ -43,6 +43,7 @@ describe("Movie Details test suite", () => {
       "Actors",
       "Awards",
       "Metascore",
+      "Ratings",
     ];
     propertiesToMap.forEach((property) =>
       expect(screen.getByText(property)).toBeInTheDocument(),

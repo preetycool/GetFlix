@@ -1,14 +1,17 @@
 @import "../../base";
 
 .container {
+  padding: 1rem;
   .back-button {
-    width: 200px;
+    width: 100px;
+    text-align: center;
     background: none;
-    color: white;
+    color: black;
     text-align: left;
     margin-top: 0;
+    font-size: 1.5rem;
     margin: 0 1rem;
-
+    background-color: white;
     &:hover {
       color: grey;
     }
@@ -42,6 +45,38 @@
 
     .detail-row {
       margin-bottom: 2rem;
+    }
+
+    &__ratings {
+      border: white 2px solid;
+      padding: 1rem;
+      margin-bottom: 2rem;
+
+      &__heading {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      &__raters {
+        @include for-phone-only {
+          flex-direction: column;
+        }
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .detail-row {
+          @include for-phone-only {
+            &:not(:nth-child(1)) {
+              margin-top: 1rem;
+            }
+          }
+          margin-bottom: 0;
+          &__heading {
+            font-size: 1rem;
+          }
+        }
+      }
     }
   }
 }

@@ -1,5 +1,4 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import App from "./App";
 import { renderWithProviders } from "./shared/utils/test-utils";
 import { BrowserRouter } from "react-router-dom";

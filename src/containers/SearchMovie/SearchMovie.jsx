@@ -23,8 +23,9 @@ import {
 } from "../../shared/constants";
 
 const SearchMovie = () => {
-  const { searchQuery, listOfMovieTitlesBasedOffSearch, isLoading } =
-    useSelector((state) => state.movie);
+  const { searchQuery, listOfMovieTitlesBasedOffSearch } = useSelector(
+    (state) => state.movie,
+  );
   const queryMovie = createAction(queryMovieTitle);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -88,7 +89,7 @@ const SearchMovie = () => {
           movies?.length > 0 ? "list" : "no-list"
         }`}
       >
-        <h1 className="search-movie__heading">Welcome to GetFlix</h1>
+        <h1 className="search-movie__heading heading">Welcome to GetFlix</h1>
         <InputField
           className="search-movie"
           value={searchTerm}

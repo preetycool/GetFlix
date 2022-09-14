@@ -12,6 +12,10 @@ export function renderWithProviders(
     store = configureStore({
       reducer: { movie: searchMovieSlice, movieApi: movieApi.reducer },
       preloadedState,
+      middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({ serializableCheck: false }).concat(
+          movieApi.middleware,
+        ),
     }),
     ...renderOptions
   } = {},

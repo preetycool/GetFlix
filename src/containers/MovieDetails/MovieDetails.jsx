@@ -84,7 +84,7 @@ const MovieDetails = () => {
         />
       ) : (
         <section className="movie-details">
-          <h1 className="movie-details__heading">Movie Details</h1>
+          <h1 className="movie-details__heading heading">Movie Details</h1>
           <h2 className="movie-details__title">{movieDetails.Title}</h2>
           <img
             className="movie-details__image"
